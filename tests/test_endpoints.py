@@ -1,6 +1,6 @@
 """Tests for URL builders."""
 
-from shopifyscrape._endpoints import (
+from shopscout._endpoints import (
     collection_products_url,
     collections_url,
     meta_url,

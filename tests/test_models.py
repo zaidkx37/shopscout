@@ -1,6 +1,6 @@
 """Tests for data models."""
 
-from shopifyscrape.models import Collection, Product, Variant
+from shopscout.models import Collection, Product, Variant
 
 
 class TestVariant:

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from shopifyscrape.client import Shopify
+from shopscout.client import Shopify
 
 _proxy: str | None = None
 

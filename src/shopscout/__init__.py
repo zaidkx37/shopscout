@@ -1,9 +1,9 @@
 """
-shopifyscrape — Shopify store scraper SDK.
+shopscout — Shopify store scraper SDK.
 
 Quick start::
 
-    from shopifyscrape import Shopify
+    from shopscout import Shopify
 
     shop = Shopify('spharetech.com')
     products = shop.products()
@@ -11,8 +11,8 @@ Quick start::
 
 """
 
-from shopifyscrape.client import Shopify
-from shopifyscrape.exceptions import (
+from shopscout.client import Shopify
+from shopscout.exceptions import (
     CollectionNotFoundError,
     PageNotFoundError,
     ParsingError,
@@ -22,8 +22,8 @@ from shopifyscrape.exceptions import (
     ShopifyError,
     StoreNotFoundError,
 )
-from shopifyscrape.exporter import Exporter
-from shopifyscrape.models import (
+from shopscout.exporter import Exporter
+from shopscout.models import (
     Collection,
     CollectionImage,
     Page,

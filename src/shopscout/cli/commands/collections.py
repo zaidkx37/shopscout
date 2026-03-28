@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import click
 
-from shopifyscrape.cli.output import print_collections
+from shopscout.cli.output import print_collections
 
 
 @click.command()
@@ -20,11 +20,11 @@ def collections(
 
     \b
     Examples:
-        shopifyscrape collections spharetech.com
-        shopifyscrape collections spharetech.com --json
-        shopifyscrape collections spharetech.com --save collections.json
+        shopscout collections spharetech.com
+        shopscout collections spharetech.com --json
+        shopscout collections spharetech.com --save collections.json
     """
-    from shopifyscrape import Exporter, Shopify
+    from shopscout import Exporter, Shopify
 
     proxy = ctx.obj.get('proxy')
     shop = Shopify(domain, proxy=proxy)

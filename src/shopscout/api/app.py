@@ -3,11 +3,11 @@ from __future__ import annotations
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from shopifyscrape import __version__
-from shopifyscrape.api.deps import set_proxy
-from shopifyscrape.api.routes import collections, products, store
-from shopifyscrape.api.schemas import ErrorResponse, HealthResponse
-from shopifyscrape.exceptions import (
+from shopscout import __version__
+from shopscout.api.deps import set_proxy
+from shopscout.api.routes import collections, products, store
+from shopscout.api.schemas import ErrorResponse, HealthResponse
+from shopscout.exceptions import (
     CollectionNotFoundError,
     PageNotFoundError,
     ProductNotFoundError,

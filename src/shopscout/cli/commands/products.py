@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import click
 
-from shopifyscrape.cli.output import print_products
+from shopscout.cli.output import print_products
 
 
 @click.command()
@@ -26,14 +26,14 @@ def products(
 
     \b
     Examples:
-        shopifyscrape products spharetech.com
-        shopifyscrape products spharetech.com --collection power-banks
-        shopifyscrape products spharetech.com --page 1 --limit 10
-        shopifyscrape products spharetech.com -c power-banks -p 1 -l 5
-        shopifyscrape products spharetech.com --json
-        shopifyscrape products spharetech.com --save products.csv
+        shopscout products spharetech.com
+        shopscout products spharetech.com --collection power-banks
+        shopscout products spharetech.com --page 1 --limit 10
+        shopscout products spharetech.com -c power-banks -p 1 -l 5
+        shopscout products spharetech.com --json
+        shopscout products spharetech.com --save products.csv
     """
-    from shopifyscrape import Exporter, Shopify
+    from shopscout import Exporter, Shopify
 
     proxy = ctx.obj.get('proxy')
     shop = Shopify(domain, proxy=proxy)

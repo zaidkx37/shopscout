@@ -1,4 +1,4 @@
-"""Data models for shopifyscrape."""
+"""Data models for shopscout."""
 
 from __future__ import annotations
 

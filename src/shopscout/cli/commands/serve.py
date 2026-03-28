@@ -12,13 +12,13 @@ def serve(ctx: click.Context, host: str, port: int) -> None:
 
     \b
     Examples:
-        shopifyscrape serve
-        shopifyscrape serve --port 3000
-        shopifyscrape serve --host 0.0.0.0 --port 8080
+        shopscout serve
+        shopscout serve --port 3000
+        shopscout serve --host 0.0.0.0 --port 8080
     """
     import uvicorn
 
-    from shopifyscrape.api.app import create_app
+    from shopscout.api.app import create_app
 
     proxy = ctx.obj.get('proxy')
     app = create_app(proxy=proxy)

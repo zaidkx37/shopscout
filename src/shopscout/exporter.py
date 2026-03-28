@@ -7,7 +7,7 @@ import json
 import logging
 from pathlib import Path
 
-from shopifyscrape.models import Collection, Product, Store
+from shopscout.models import Collection, Product, Store
 
 logger = logging.getLogger(__name__)
 

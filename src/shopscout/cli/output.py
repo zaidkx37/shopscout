@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import sys
 
-from shopifyscrape.models import Collection, Product, Store
+from shopscout.models import Collection, Product, Store
 
 
 def _safe_str(text: str | None) -> str:

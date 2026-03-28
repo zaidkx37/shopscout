@@ -1,10 +1,10 @@
-"""Main Shopify client — public entry point for shopifyscrape."""
+"""Main Shopify client — public entry point for shopscout."""
 
 from __future__ import annotations
 
 import logging
 
-from shopifyscrape._endpoints import (
+from shopscout._endpoints import (
     collection_products_url,
     collections_url,
     meta_url,
@@ -14,8 +14,8 @@ from shopifyscrape._endpoints import (
     product_url,
     products_url,
 )
-from shopifyscrape._http import HTTPClient
-from shopifyscrape._parsers import (
+from shopscout._http import HTTPClient
+from shopscout._parsers import (
     parse_collection,
     parse_collections,
     parse_page,
@@ -24,16 +24,16 @@ from shopifyscrape._parsers import (
     parse_products,
     parse_store,
 )
-from shopifyscrape.exceptions import (
+from shopscout.exceptions import (
     CollectionNotFoundError,
     PageNotFoundError,
     ProductNotFoundError,
     RequestError,
     StoreNotFoundError,
 )
-from shopifyscrape.models import Collection, Page, Product, Store
+from shopscout.models import Collection, Page, Product, Store
 
-logger = logging.getLogger('shopifyscrape')
+logger = logging.getLogger('shopscout')
 
 
 class Shopify:

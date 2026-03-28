@@ -1,4 +1,4 @@
-    # shopifyscrape
+    # shopscout
 
 Scrape any Shopify store — products, collections, pages & metadata from the public JSON API. No API key required.
 
@@ -8,22 +8,22 @@ Scrape any Shopify store — products, collections, pages & metadata from the pu
 
 ```bash
 # Core SDK only
-pip install shopifyscrape
+pip install shopscout
 
 # With CLI (click + rich tables)
-pip install shopifyscrape[cli]
+pip install shopscout[cli]
 
 # With REST API (FastAPI + uvicorn)
-pip install shopifyscrape[api]
+pip install shopscout[api]
 
 # Everything
-pip install shopifyscrape[all]
+pip install shopscout[all]
 ```
 
 ## Quick Start
 
 ```python
-from shopifyscrape import Shopify
+from shopscout import Shopify
 
 shop = Shopify('spharetech.com')
 
@@ -73,7 +73,7 @@ first_page = shop.collection_products_page('power-banks', page=1, limit=10)
 ## Exporting
 
 ```python
-from shopifyscrape import Exporter, Shopify
+from shopscout import Exporter, Shopify
 
 shop = Shopify('spharetech.com')
 products = shop.products()
@@ -93,27 +93,27 @@ shop = Shopify('store.com', proxy='http://user:pass@host:port')
 
 ```bash
 # Scrape products
-shopifyscrape products spharetech.com
-shopifyscrape products spharetech.com --collection power-banks
-shopifyscrape products spharetech.com --json
-shopifyscrape products spharetech.com --save products.csv
+shopscout products spharetech.com
+shopscout products spharetech.com --collection power-banks
+shopscout products spharetech.com --json
+shopscout products spharetech.com --save products.csv
 
 # Scrape collections
-shopifyscrape collections spharetech.com
+shopscout collections spharetech.com
 
 # Store metadata
-shopifyscrape store spharetech.com
+shopscout store spharetech.com
 
 # With proxy
-shopifyscrape --proxy http://host:port products spharetech.com
+shopscout --proxy http://host:port products spharetech.com
 ```
 
 ## REST API
 
 ```bash
 # Start the API server
-shopifyscrape serve
-shopifyscrape serve --port 3000
+shopscout serve
+shopscout serve --port 3000
 ```
 
 ### Endpoints
@@ -133,7 +133,7 @@ Interactive docs at `http://localhost:8000/docs`
 ## Error Handling
 
 ```python
-from shopifyscrape import Shopify, StoreNotFoundError, ProductNotFoundError
+from shopscout import Shopify, StoreNotFoundError, ProductNotFoundError
 
 shop = Shopify('not-a-shopify-store.com')
 try:

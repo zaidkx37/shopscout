@@ -1,10 +1,10 @@
-"""Exception hierarchy for shopifyscrape."""
+"""Exception hierarchy for shopscout."""
 
 from __future__ import annotations
 
 
 class ShopifyError(Exception):
-    """Base exception for all shopifyscrape errors."""
+    """Base exception for all shopscout errors."""
 
 
 class StoreNotFoundError(ShopifyError):

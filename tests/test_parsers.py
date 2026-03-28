@@ -1,6 +1,6 @@
 """Tests for response parsers."""
 
-from shopifyscrape._parsers import parse_collections, parse_products, parse_store
+from shopscout._parsers import parse_collections, parse_products, parse_store
 
 
 class TestParseStore:

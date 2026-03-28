@@ -1,4 +1,4 @@
-from shopifyscrape import Shopify
+from shopscout import Shopify
 import json
 
 shop = Shopify('spharetech.com')

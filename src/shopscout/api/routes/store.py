@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from fastapi import APIRouter, Query
 
-from shopifyscrape.api.deps import get_shopify
-from shopifyscrape.api.schemas import PageResponse, StoreResponse
+from shopscout.api.deps import get_shopify
+from shopscout.api.schemas import PageResponse, StoreResponse
 
 router = APIRouter()
 

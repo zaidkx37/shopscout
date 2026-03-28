@@ -1,4 +1,4 @@
-"""HTTP transport layer for shopifyscrape using requests."""
+"""HTTP transport layer for shopscout using requests."""
 
 from __future__ import annotations
 
@@ -8,9 +8,9 @@ import time
 
 import requests
 
-from shopifyscrape.exceptions import RateLimitError, RequestError
+from shopscout.exceptions import RateLimitError, RequestError
 
-logger = logging.getLogger('shopifyscrape.http')
+logger = logging.getLogger('shopscout.http')
 
 DEFAULT_HEADERS: dict[str, str] = {
     'Accept': 'application/json',

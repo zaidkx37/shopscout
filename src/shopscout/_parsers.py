@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from shopifyscrape.models import (
+from shopscout.models import (
     Collection,
     CollectionImage,
     Page,
