@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "shopscout"
-version = "0.1.1"
+version = "0.1.2"
 description = "Scrape any Shopify store - products, collections, pages & metadata from the public JSON API. SDK + CLI + REST API."
 readme = "README.md"
 license = "MIT"
