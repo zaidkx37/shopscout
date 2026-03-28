@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "shopifyscrape"
+name = "shopscout"
 version = "0.1.0"
 description = "Scrape any Shopify store — products, collections, pages & metadata from the public JSON API. SDK + CLI + REST API."
 readme = "README.md"
@@ -42,7 +42,7 @@ Issues = "https://github.com/zaidkx37/shopifyscrape/issues"
 [project.optional-dependencies]
 cli = ["click>=8.0", "rich>=13.0"]
 api = ["fastapi>=0.100.0", "uvicorn[standard]>=0.20.0"]
-all = ["shopifyscrape[cli,api]"]
+all = ["shopscout[cli,api]"]
 dev = [
     "pytest>=7.0",
     "ruff>=0.1.0",
