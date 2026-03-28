@@ -10,7 +10,7 @@ from shopscout import __version__
 @click.option('--proxy', envvar='SHOPIFYSCRAPE_PROXY', default=None, help='HTTP proxy URL.')
 @click.pass_context
 def main(ctx: click.Context, proxy: str | None) -> None:
-    """shopscout — Shopify store scraping toolkit.
+    """shopscout - Shopify store scraping toolkit.
 
     Scrape products, collections, and metadata from any Shopify store.
     No API key required.

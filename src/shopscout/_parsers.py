@@ -1,4 +1,4 @@
-"""Response parsers — JSON dicts to dataclass models."""
+"""Response parsers - JSON dicts to dataclass models."""
 
 from __future__ import annotations
 

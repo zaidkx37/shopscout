@@ -1,4 +1,4 @@
-"""Main Shopify client — public entry point for shopscout."""
+"""Main Shopify client - public entry point for shopscout."""
 
 from __future__ import annotations
 
@@ -16,7 +16,6 @@ from shopscout._endpoints import (
 )
 from shopscout._http import HTTPClient
 from shopscout._parsers import (
-    parse_collection,
     parse_collections,
     parse_page,
     parse_pages,
@@ -93,7 +92,7 @@ class Shopify:
         try:
             data = self._get_json(meta_url(self._base))
         except RequestError:
-            raise StoreNotFoundError(self._domain)
+            raise StoreNotFoundError(self._domain) from None
         return parse_store(data)
 
     # ── Products ──
@@ -153,7 +152,7 @@ class Shopify:
         try:
             data = self._get_json(product_url(self._base, handle))
         except RequestError:
-            raise ProductNotFoundError(handle)
+            raise ProductNotFoundError(handle) from None
         return parse_product(data.get('product', data))
 
     # ── Collections ──
@@ -191,7 +190,7 @@ class Shopify:
                 data = self._get_json(url)
             except RequestError:
                 if page == 1:
-                    raise CollectionNotFoundError(handle)
+                    raise CollectionNotFoundError(handle) from None
                 break
             batch = parse_products(data)
             if not batch:
@@ -226,7 +225,7 @@ class Shopify:
         try:
             data = self._get_json(url)
         except RequestError:
-            raise CollectionNotFoundError(handle)
+            raise CollectionNotFoundError(handle) from None
         return parse_products(data)
 
     # ── Pages ──
@@ -255,7 +254,7 @@ class Shopify:
         try:
             data = self._get_json(page_url(self._base, handle))
         except RequestError:
-            raise PageNotFoundError(handle)
+            raise PageNotFoundError(handle) from None
         return parse_page(data.get('page', data))
 
     def __repr__(self) -> str:

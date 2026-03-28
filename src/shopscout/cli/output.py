@@ -48,7 +48,7 @@ def print_products(products: list[Product], output_json: bool = False) -> None:
             )
 
         console.print(table)
-        console.print('[dim]%d products[/dim]' % len(products))
+        console.print(f'[dim]{len(products)} products[/dim]')
 
     except ImportError:
         _print_products_plain(products)
@@ -80,7 +80,7 @@ def print_collections(collections: list[Collection], output_json: bool = False) 
             )
 
         console.print(table)
-        console.print('[dim]%d collections[/dim]' % len(collections))
+        console.print(f'[dim]{len(collections)} collections[/dim]')
 
     except ImportError:
         _print_collections_plain(collections)
@@ -124,8 +124,8 @@ def _print_products_plain(products: list[Product]) -> None:
     print('Products\n')
     for i, p in enumerate(products, start=1):
         stock = 'In Stock' if p.available else 'Out of Stock'
-        print('%d. %s' % (i, p.title))
-        print('   Vendor: %s | Price: %s | %s' % (p.vendor, p.price or '-', stock))
+        print(f'{i}. {p.title}')
+        print(f'   Vendor: {p.vendor} | Price: {p.price or "-"} | {stock}')
         print()
 
 
@@ -133,7 +133,7 @@ def _print_collections_plain(collections: list[Collection]) -> None:
     """Fallback plain text output for collections."""
     print('Collections\n')
     for i, c in enumerate(collections, start=1):
-        print('%d. %s (%s) — %d products' % (i, c.title, c.handle, c.products_count))
+        print(f'{i}. {c.title} ({c.handle}) - {c.products_count} products')
 
 
 def _print_store_plain(store: Store) -> None:

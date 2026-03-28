@@ -26,7 +26,7 @@ class HTTPClient:
     """HTTP client with retry logic and optional proxy.
 
     Uses ``requests.Session`` for connection pooling.
-    No explicit ``.close()`` required — the session is cleaned up on garbage collection.
+    No explicit ``.close()`` required - the session is cleaned up on garbage collection.
 
     Args:
         proxy: Optional proxy URL (e.g. ``'http://user:pass@host:port'``).
@@ -120,4 +120,5 @@ class HTTPClient:
                     time.sleep(delay)
                     continue
 
-        raise RequestError(0, f'Request failed after {self._max_retries + 1} attempts: {last_error}')
+        msg = f'Request failed after {self._max_retries + 1} attempts: {last_error}'
+        raise RequestError(0, msg)

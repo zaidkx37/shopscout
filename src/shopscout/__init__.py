@@ -1,5 +1,5 @@
 """
-shopscout — Shopify store scraper SDK.
+shopscout - Shopify store scraper SDK.
 
 Quick start::
 

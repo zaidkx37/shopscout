@@ -44,10 +44,7 @@ def products(
         else:
             result = shop.products_page(page=page, limit=limit)
     else:
-        if collection:
-            result = shop.collection_products(collection)
-        else:
-            result = shop.products()
+        result = shop.collection_products(collection) if collection else shop.products()
 
     if save:
         exporter = Exporter()

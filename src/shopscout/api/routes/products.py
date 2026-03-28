@@ -28,10 +28,7 @@ async def get_products(
         else:
             products = shop.products_page(page=page, limit=limit)
     else:
-        if collection:
-            products = shop.collection_products(collection)
-        else:
-            products = shop.products()
+        products = shop.collection_products(collection) if collection else shop.products()
 
     return [ProductResponse(**p.to_dict()) for p in products]
 
