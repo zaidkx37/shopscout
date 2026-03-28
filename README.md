@@ -1,9 +1,11 @@
 # shopscout
 
-[![PyPI](https://img.shields.io/pypi/v/shopscout)](https://pypi.org/project/shopscout/)
-[![Python](https://img.shields.io/pypi/pyversions/shopscout)](https://pypi.org/project/shopscout/)
-[![License](https://img.shields.io/github/license/zaidkx37/shopscout)](https://github.com/zaidkx37/shopscout/blob/main/LICENSE)
-[![Downloads](https://img.shields.io/pypi/dm/shopscout)](https://pypi.org/project/shopscout/)
+<p align="center">
+  <a href="https://pypi.org/project/shopscout/"><img src="https://img.shields.io/pypi/v/shopscout" alt="PyPI"></a>
+  <a href="https://pypi.org/project/shopscout/"><img src="https://img.shields.io/pypi/pyversions/shopscout" alt="Python"></a>
+  <a href="https://github.com/zaidkx37/shopscout/blob/main/LICENSE"><img src="https://img.shields.io/github/license/zaidkx37/shopscout" alt="License"></a>
+  <a href="https://pypi.org/project/shopscout/"><img src="https://img.shields.io/pypi/dm/shopscout" alt="Downloads"></a>
+</p>
 
 Scrape any Shopify store - products, collections, pages & metadata from the public JSON API. No API key required.
 
