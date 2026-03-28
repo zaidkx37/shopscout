@@ -1,6 +1,11 @@
-    # shopscout
+# shopscout
 
-Scrape any Shopify store — products, collections, pages & metadata from the public JSON API. No API key required.
+[![PyPI](https://img.shields.io/pypi/v/shopscout)](https://pypi.org/project/shopscout/)
+[![Python](https://img.shields.io/pypi/pyversions/shopscout)](https://pypi.org/project/shopscout/)
+[![License](https://img.shields.io/github/license/zaidkx37/shopscout)](https://github.com/zaidkx37/shopscout/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/pypi/dm/shopscout)](https://pypi.org/project/shopscout/)
+
+Scrape any Shopify store - products, collections, pages & metadata from the public JSON API. No API key required.
 
 **Three interfaces:** Python SDK, CLI, and REST API.
 
