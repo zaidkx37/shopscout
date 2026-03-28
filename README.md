@@ -1,4 +1,4 @@
-# shopscout
+<h1 align="center">shopscout</h1>
 
 <p align="center">
   <a href="https://pypi.org/project/shopscout/"><img src="https://img.shields.io/pypi/v/shopscout" alt="PyPI"></a>
