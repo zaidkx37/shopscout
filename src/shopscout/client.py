@@ -333,8 +333,8 @@ class Shopify:
             logger.warning('Trustoo API error: %s', data.get('message'))
             return [], ReviewSummary(total_reviews=0, average_rating=0.0)
 
-        inner = data['data']
-        total_rating = inner.get('total_rating', {})
+        inner = data.get('data') or {}
+        total_rating = inner.get('total_rating') or {}
 
         summary = ReviewSummary(
             total_reviews=total_rating.get('total_reviews', 0),
