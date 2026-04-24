@@ -276,22 +276,16 @@ class Shopify:
     # -- Reviews (Trustoo) --
 
     def shop_id(self) -> int | None:
-        """Auto-detect the shop_id by scraping a product page.
+        """Get the shop_id from store metadata.
 
-        The shop_id is needed for the Trustoo reviews API. It's extracted
-        from a ``<script data-page-type="product">`` tag on any product page.
+        The shop_id is needed for the Trustoo reviews API. It comes
+        directly from ``store().id`` - no extra HTML scraping needed.
 
         Returns:
-            The shop_id as an integer, or None if not found.
+            The shop_id as an integer, or None if the store is unreachable.
         """
         try:
-            products = self.products_page(page=1, limit=1)
-            if not products:
-                return None
-            import requests as _requests
-            url = f'{self._base}/products/{products[0].handle}'
-            response = _requests.get(url, allow_redirects=True, timeout=15)
-            return _extract_shop_id(response.text)
+            return self.store().id
         except Exception:
             return None
 
