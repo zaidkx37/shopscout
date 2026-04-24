@@ -288,10 +288,10 @@ class Shopify:
             products = self.products_page(page=1, limit=1)
             if not products:
                 return None
+            import requests as _requests
             url = f'{self._base}/products/{products[0].handle}'
-            response = self._http.get(url)
-            html = response.text
-            return _extract_shop_id(html)
+            response = _requests.get(url, allow_redirects=True, timeout=15)
+            return _extract_shop_id(response.text)
         except Exception:
             return None
 

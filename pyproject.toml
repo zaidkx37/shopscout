@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "shopscout"
-version = "0.1.2"
-description = "Scrape any Shopify store - products, collections, pages & metadata from the public JSON API. SDK + CLI + REST API."
+version = "0.2.0"
+description = "Scrape any Shopify store - products, collections, pages, metadata & reviews from the public JSON API. SDK + CLI + REST API."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
@@ -32,6 +32,7 @@ classifiers = [
 ]
 dependencies = [
     "requests>=2.28.0",
+    "beautifulsoup4>=4.12",
 ]
 
 [project.urls]
