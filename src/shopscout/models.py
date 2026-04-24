@@ -294,3 +294,52 @@ class Page:
             'updated_at': self.updated_at,
             'url': self.url,
         }
+
+
+@dataclass(frozen=True, slots=True)
+class Review:
+    """A product review from a review app (e.g. Trustoo)."""
+
+    id: str
+    author: str
+    rating: int
+    content: str
+    commented_at: str
+    verified: bool = False
+    reply_content: str = ''
+    resources: list[dict] = field(default_factory=list)
+
+    def to_dict(self) -> dict:
+        return {
+            'id': self.id,
+            'author': self.author,
+            'rating': self.rating,
+            'content': self.content,
+            'commented_at': self.commented_at,
+            'verified': self.verified,
+            'reply_content': self.reply_content,
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class ReviewSummary:
+    """Review statistics for a product."""
+
+    total_reviews: int
+    average_rating: float
+    star_1: int = 0
+    star_2: int = 0
+    star_3: int = 0
+    star_4: int = 0
+    star_5: int = 0
+
+    def to_dict(self) -> dict:
+        return {
+            'total_reviews': self.total_reviews,
+            'average_rating': self.average_rating,
+            'star_1': self.star_1,
+            'star_2': self.star_2,
+            'star_3': self.star_3,
+            'star_4': self.star_4,
+            'star_5': self.star_5,
+        }

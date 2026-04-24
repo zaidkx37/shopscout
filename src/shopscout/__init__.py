@@ -30,6 +30,8 @@ from shopscout.models import (
     Product,
     ProductImage,
     ProductOption,
+    Review,
+    ReviewSummary,
     Store,
     Variant,
 )
@@ -59,4 +61,6 @@ __all__ = [
     'Collection',
     'CollectionImage',
     'Page',
+    'Review',
+    'ReviewSummary',
 ]

@@ -30,9 +30,25 @@ from shopscout.exceptions import (
     RequestError,
     StoreNotFoundError,
 )
-from shopscout.models import Collection, Page, Product, Store
+from shopscout.models import Collection, Page, Product, Review, ReviewSummary, Store
 
 logger = logging.getLogger('shopscout')
+
+
+def _extract_shop_id(html: str) -> int | None:
+    """Extract shop_id from a product page HTML."""
+    try:
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(html, 'html.parser')
+        tag = soup.find('script', attrs={'data-page-type': 'product'})
+        if tag is None:
+            return None
+        shop_id_str = tag.get('data-shop-id')
+        if shop_id_str is None:
+            return None
+        return int(shop_id_str)
+    except Exception:
+        return None
 
 
 class Shopify:
@@ -256,6 +272,118 @@ class Shopify:
         except RequestError:
             raise PageNotFoundError(handle) from None
         return parse_page(data.get('page', data))
+
+    # -- Reviews (Trustoo) --
+
+    def shop_id(self) -> int | None:
+        """Auto-detect the shop_id by scraping a product page.
+
+        The shop_id is needed for the Trustoo reviews API. It's extracted
+        from a ``<script data-page-type="product">`` tag on any product page.
+
+        Returns:
+            The shop_id as an integer, or None if not found.
+        """
+        try:
+            products = self.products_page(page=1, limit=1)
+            if not products:
+                return None
+            url = f'{self._base}/products/{products[0].handle}'
+            response = self._http.get(url)
+            html = response.text
+            return _extract_shop_id(html)
+        except Exception:
+            return None
+
+    def reviews(
+        self,
+        product_id: int,
+        shop_id: int | None = None,
+        page: int = 1,
+        limit: int = 15,
+    ) -> tuple[list[Review], ReviewSummary]:
+        """Fetch reviews for a product from the Trustoo reviews API.
+
+        Args:
+            product_id: The Shopify product ID (numeric).
+            shop_id: The shop ID. If not provided, auto-detected.
+            page: Page number (1-indexed).
+            limit: Reviews per page.
+
+        Returns:
+            Tuple of (list of Review objects, ReviewSummary with totals).
+        """
+        if shop_id is None:
+            shop_id = self.shop_id()
+            if shop_id is None:
+                logger.warning('Could not detect shop_id for reviews')
+                return [], ReviewSummary(total_reviews=0, average_rating=0.0)
+
+        params = {
+            'shop_id': str(shop_id),
+            'product_id': str(product_id),
+            'page': str(page),
+            'limit': str(limit),
+            'sort_by': 'comprehensive-descending',
+        }
+
+        import requests as _requests
+        resp = _requests.get(
+            'https://api.trustoo.io/api/v1/reviews/get_product_reviews',
+            params=params,
+            timeout=15,
+        )
+        data = resp.json()
+
+        if data.get('code') != 0:
+            logger.warning('Trustoo API error: %s', data.get('message'))
+            return [], ReviewSummary(total_reviews=0, average_rating=0.0)
+
+        inner = data['data']
+        total_rating = inner.get('total_rating', {})
+
+        summary = ReviewSummary(
+            total_reviews=total_rating.get('total_reviews', 0),
+            average_rating=float(total_rating.get('rating', '0.00')),
+            star_1=total_rating.get('total_star1', 0),
+            star_2=total_rating.get('total_star2', 0),
+            star_3=total_rating.get('total_star3', 0),
+            star_4=total_rating.get('total_star4', 0),
+            star_5=total_rating.get('total_star5', 0),
+        )
+
+        reviews = [
+            Review(
+                id=str(r.get('id', '')),
+                author=r.get('author', ''),
+                rating=r.get('star', 0),
+                content=r.get('content', ''),
+                commented_at=r.get('commented_at', ''),
+                verified=r.get('verified_badge', 0) > 0,
+                reply_content=r.get('reply_content', ''),
+                resources=r.get('resources', []),
+            )
+            for r in inner.get('list', [])
+        ]
+
+        logger.info(
+            'Fetched %d reviews for product %d (total: %d)',
+            len(reviews), product_id, summary.total_reviews,
+        )
+        return reviews, summary
+
+    def review_count(self, product_id: int, shop_id: int | None = None) -> int:
+        """Get just the review count for a product (efficient, fetches limit=1).
+
+        Args:
+            product_id: The Shopify product ID.
+            shop_id: The shop ID. If not provided, auto-detected.
+
+        Returns:
+            Total review count for the product.
+        """
+        _, summary = self.reviews(product_id, shop_id=shop_id, page=1, limit=1)
+        return summary.total_reviews
 
     def __repr__(self) -> str:
         return f'Shopify({self._domain!r})'
