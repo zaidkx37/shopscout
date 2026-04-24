@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.2 (2026-04-24)
+
+- Fix crash when Trustoo API returns `null` for `total_rating` or `data` (products with no reviews)
+
 ## v0.2.1 (2026-04-24)
 
 ### New Features
