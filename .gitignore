@@ -14,5 +14,8 @@ output/
 .venv/
 venv/
 .claude/
+.superpowers/
+docs/superpowers/
+Reviewer/
 endpoint-analysis.md
 shopify.json
