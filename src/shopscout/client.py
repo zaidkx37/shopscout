@@ -44,7 +44,7 @@ def _extract_shop_id(html: str) -> int | None:
         if tag is None:
             return None
         shop_id_str = tag.get('data-shop-id')
-        if shop_id_str is None:
+        if shop_id_str is None or not isinstance(shop_id_str, str):
             return None
         return int(shop_id_str)
     except Exception:
