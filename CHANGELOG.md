@@ -7,7 +7,7 @@
 - **Review scraping** - Fetch product reviews from Shopify stores using the Trustoo reviews integration
   - `shop.reviews(product_id)` - Fetch reviews for a specific product (paginated)
   - `shop.review_count(product_id)` - Get review count for a product (efficient, single API call)
-  - `shop.shop_id()` - Auto-detect the store's shop_id from a product page
+  - `shop.shop_id()` - Get the store's shop_id from store metadata via `store().id`
 - **New models** - `Review` and `ReviewSummary` dataclasses with `to_dict()` support
 
 ### Usage
@@ -17,7 +17,7 @@ from shopscout import Shopify
 
 shop = Shopify('spharetech.com')
 
-# Auto-detect shop_id (needed for reviews)
+# Get shop_id from store metadata
 sid = shop.shop_id()
 
 # Fetch reviews for a product
@@ -32,7 +32,7 @@ count = shop.review_count(product_id=9309304946934)
 
 ### Dependencies
 
-- Added `beautifulsoup4>=4.12` as a core dependency (used for shop_id extraction from product page HTML)
+- Added `beautifulsoup4>=4.12` as a core dependency
 
 ---
 
